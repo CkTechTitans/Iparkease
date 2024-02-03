@@ -15,13 +15,19 @@ body{
     padding: 30px;
     border: 5px solid rgb(89, 108, 173);
     border-radius: 8px;
-    
+    color: white;
 
 }
-.content h1{
+button{
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: rgba(6, 94, 227, 0.447);
     color: white;
+    border-color: white;
+    border-radius:8px;
 }
-
-#availability{
-    color: white;
+button :hover{
+    background-color: #5c9dda;
 }
