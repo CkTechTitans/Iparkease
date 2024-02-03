@@ -74,3 +74,4 @@ function navigateToReservedSpace() {
         alert('Geolocation is not supported by your browser. Please manually enter your location.');
     }
 }
+
