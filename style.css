@@ -14,7 +14,7 @@ body{
     max-width: 600px;
     margin: 0 auto;
     padding: 30px;
-    border: 5px solid rgb(89, 108, 173);
+    border: 5px solid rgb(101, 115, 163);
     border-radius: 8px;
     backdrop-filter: blur(5px);
     color: white;
@@ -32,6 +32,15 @@ button{
 }
 button :hover{
     background-color: #5c9dda;
+}
+
+#availability {
+    margin-bottom: 20px;
+}
+
+
+.container h1 {
+    color:white;
 }
 
 .sidebar {
@@ -70,5 +79,20 @@ button :hover{
     margin-top: 15px;
     color: rgb(255, 166, 0);
     padding: 2px;
+}
+
+#reservationHistory {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#historyList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#historyList li {
+    margin-bottom: 5px;
 }
 

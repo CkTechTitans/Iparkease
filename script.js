@@ -1,4 +1,5 @@
 let availableSpaces = 100;
+let reservationHistory = [];
 
 let userProfile = {
     userName: '',
@@ -9,7 +10,7 @@ let userProfile = {
     
 };
 function reserveSpace() {
-    // Ask for user's name, vehicle number, email, phone number, and vehicle type
+    
     userProfile.userName = prompt('Enter your name:');
     userProfile.vehicleNumber = prompt('Enter your vehicle number:');
     userProfile.userEmail = prompt('Enter your email:');
@@ -21,7 +22,7 @@ function reserveSpace() {
         availableSpaces--;
         updateAvailableSpaces();
 
-        // Add reservation to history with user's information
+    
         const timestamp = new Date().toLocaleString();
         const reservationInfo = `Reserved by ${userProfile.userName} (${userProfile.vehicleNumber}), Email: ${userProfile.userEmail}, Phone Number: ${userProfile.userPhoneNumber}, Vehicle Type: ${userProfile.vehicleType} on ${timestamp}`;
         reservationHistory.push(reservationInfo);
@@ -42,7 +43,7 @@ function askVehicleType() {
         return '4-wheeler';
     } else {
         alert('Invalid selection. Please choose either 1 or 2.');
-        return askVehicleType(); // Recursive call if the selection is invalid
+        return askVehicleType(); 
     }
 }
 
@@ -51,7 +52,7 @@ function updateAvailableSpaces() {
 }
 
 function navigateToReservedSpace() {
-    // Predefined destination coordinates (for example)
+   
     const predefinedDestination = 'mgroad';
 
     if (navigator.geolocation) {
@@ -59,10 +60,10 @@ function navigateToReservedSpace() {
             function (position) {
                 const userLocation = `${position.coords.latitude},${position.coords.longitude}`;
 
-                // Create a Google Maps URL with both user location and predefined destination
+                
                 const mapsURL = `https://www.google.com/maps/dir/${userLocation}/${predefinedDestination}/`;
 
-                // Open a new tab/window with the Google Maps URL
+               
                 window.open(mapsURL, '_blank');
             },
             function (error) {
@@ -75,3 +76,48 @@ function navigateToReservedSpace() {
     }
 }
 
+
+function updateProfileInfo() {
+    const profileInfo = document.getElementById('profileInfo');
+    profileInfo.innerHTML = `
+        <p>Name: ${userProfile.userName}</p>
+        <p>Vehicle Number: ${userProfile.vehicleNumber}</p>
+        <p>Email: ${userProfile.userEmail}</p>
+        <p>Phone Number: ${userProfile.userPhoneNumber}</p>
+        <p>Vehicle Type: ${userProfile.vehicleType}</p>
+    `;
+}
+
+
+function showProfile() {
+    const profileSection = document.getElementById('profile');
+
+    
+    if (userProfile.userName && userProfile.vehicleNumber && userProfile.userEmail &&
+        userProfile.userPhoneNumber && userProfile.vehicleType) {
+        updateProfileInfo();
+        profileSection.style.display = 'block';
+    } else {
+        alert('No profile information available. Please reserve a parking space first.');
+    }
+}
+
+function showReservationHistory() {
+    const historySection = document.getElementById('reservationHistory');
+    const historyList = document.getElementById('historyList');
+
+    historyList.innerHTML = '';
+
+   
+    if (reservationHistory.length > 0) {
+        reservationHistory.forEach((entry) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = entry;
+            historyList.appendChild(listItem);
+        });
+
+        historySection.style.display = 'block';
+    } else {
+        alert('No reservation history available.');
+    }
+}
