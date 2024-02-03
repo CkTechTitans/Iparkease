@@ -8,6 +8,7 @@ body{
     justify-content: center;
     margin-top: 150px;
 }
+
 .content{
     text-align: center;
     max-width: 600px;
@@ -15,6 +16,7 @@ body{
     padding: 30px;
     border: 5px solid rgb(89, 108, 173);
     border-radius: 8px;
+    backdrop-filter: blur(5px);
     color: white;
 
 }
@@ -31,3 +33,4 @@ button{
 button :hover{
     background-color: #5c9dda;
 }
+

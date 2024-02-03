@@ -49,3 +49,28 @@ function askVehicleType() {
 function updateAvailableSpaces() {
     document.getElementById('availableSpaces').innerText = availableSpaces;
 }
+
+function navigateToReservedSpace() {
+    // Predefined destination coordinates (for example)
+    const predefinedDestination = 'mgroad';
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                const userLocation = `${position.coords.latitude},${position.coords.longitude}`;
+
+                // Create a Google Maps URL with both user location and predefined destination
+                const mapsURL = `https://www.google.com/maps/dir/${userLocation}/${predefinedDestination}/`;
+
+                // Open a new tab/window with the Google Maps URL
+                window.open(mapsURL, '_blank');
+            },
+            function (error) {
+                console.error('Error getting user location:', error.message);
+                alert('Error getting user location. Please try again or manually enter your location.');
+            }
+        );
+    } else {
+        alert('Geolocation is not supported by your browser. Please manually enter your location.');
+    }
+}
