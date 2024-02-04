@@ -1,5 +1,5 @@
 let availableSpaces = 100;
-let reservationHistory = [];
+let reservationHistory =[];
 
 let userProfile = {
     userName: '',
@@ -21,10 +21,12 @@ function reserveSpace() {
         userProfile.userPhoneNumber && userProfile.vehicleType) {
         availableSpaces--;
         updateAvailableSpaces();
+        const allocatedSpace=Math.floor(Math.random()*100)+1;
+     
 
     
         const timestamp = new Date().toLocaleString();
-        const reservationInfo = `Reserved by ${userProfile.userName} (${userProfile.vehicleNumber}), Email: ${userProfile.userEmail}, Phone Number: ${userProfile.userPhoneNumber}, Vehicle Type: ${userProfile.vehicleType} on ${timestamp}`;
+        const reservationInfo = `Reserved by ${userProfile.userName} ,Allocated space:${allocatedSpace},(${userProfile.vehicleNumber}), Email: ${userProfile.userEmail}, Phone Number: ${userProfile.userPhoneNumber}, Vehicle Type: ${userProfile.vehicleType} on ${timestamp}`;
         reservationHistory.push(reservationInfo);
 
         alert('Parking space reserved! Please navigate to the reserved space.');
@@ -119,5 +121,29 @@ function showReservationHistory() {
         historySection.style.display = 'block';
     } else {
         alert('No reservation history available.');
+    }
+}
+
+function saveToHistoryMenu() {
+    const historyListMenu = document.getElementById('historyListMenu');
+
+    historyListMenu.innerHTML = '';
+
+    if (reservationHistory.length > 0) {
+        reservationHistory.forEach((entry) => {
+            const listItem = document.createElement('li');
+            
+            listItem.textContent = `
+                Allocated Space: ${entry.allocatedSpace},
+                Reserved by ${entry.userName} (${entry.vehicleNumber}),
+                Email: ${entry.userEmail},
+                Phone Number: ${entry.userPhoneNumber},
+                Vehicle Type: ${entry.vehicleType},
+                Reserved On: ${entry.timestamp}
+            `;
+            historyListMenu.appendChild(listItem);
+        });
+
+        document.getElementById('reservationHistoryMenu').style.display = 'block';
     }
 }
